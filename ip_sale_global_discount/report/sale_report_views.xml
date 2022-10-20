@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-call='account.document_tax_totals']" position="before">
+            <tr class="border-black o_total">
+                <td><strong>Discount <t t-if="doc.discount_type == 'per'">(%)</t></strong></td>
+                <td class="text-right">
+                    <span t-field="doc.discount_total"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+    <template id="account_invoice_add_discount_report" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-call='account.document_tax_totals']" position="before">
+            <tr t-if="o.discount_total">
+                <td>Discount <t t-if="o.discount_type == 'per'">(%)</t></td>
+                <td class="text-right">
+                    <span t-field="o.discount_total"/>
+                </td>
+            </tr>  
+        </xpath>
+    </template>
+</odoo>
