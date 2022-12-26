@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="account_move_form_view_inherit_ip" model="ir.ui.view">
+            <field name="name">account.move.form.view.inherit.ip</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('d-flex')]" position="after">
+                    <field name="discount_type" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                    <field name="discount_value" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                </xpath>
+                <xpath expr="//field[@name='tax_totals_json']" position="before">
+                    <field name="discount_total" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
